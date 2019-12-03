@@ -14,7 +14,6 @@ export class LayoutClientComponent implements OnInit {
   ngOnInit() { }
 
   openModalEmployee(id: string) {
-    console.log(id);
     this.registrationComponent.openModal(id);
   }
 

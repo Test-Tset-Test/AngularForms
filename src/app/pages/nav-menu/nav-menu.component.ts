@@ -8,7 +8,6 @@ import {RegistrationComponent} from '../client/registration/registration.compone
   styleUrls: ['./nav-menu.component.scss']
 })
 export class NavMenuComponent implements OnInit {
-  public currentUser;
   constructor() {
   }
 
