@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalModule} from '../../modal/modal.module';
+import {ModalModule} from '../../../components/modal/modal.module';
 import {UserService} from '../../../service/user.service';
 import {ModalService} from '../../../service/modal.service';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
@@ -11,10 +11,18 @@ import {getLiteralValue} from 'codelyzer/util/getLiteralValue';
   styleUrls: ['./registration2.component.scss']
 })
 export class Registration2Component implements OnInit {
+  maxBirthday: string;
 
   userForm: FormGroup;
   constructor(private modalService: ModalService,
-              private fb: FormBuilder) {}
+              private fb: FormBuilder) {
+    const currentDate = new Date();
+    const maxBirthday = new Date(currentDate.getFullYear() - 15, currentDate.getMonth(), currentDate.getDate());
+    const year: string = String(maxBirthday.getFullYear());
+    const month: string = maxBirthday.getMonth() + 1 < 10 ? `0${maxBirthday.getMonth() + 1}` : String(maxBirthday.getMonth() + 1);
+    const day: string = maxBirthday.getDay() < 10 ? `0${maxBirthday.getDay()}` : String(maxBirthday.getDay());
+    this.maxBirthday = `${year}-${month}-${day}`;
+  }
 
   openModal(id) {
     this.initForm();
@@ -38,9 +46,13 @@ export class Registration2Component implements OnInit {
         Validators.email
         ]
       ],
+      age: ['', [
+        Validators.required,
+        ]
+      ],
       password: [null, [
         Validators.required,
-        Validators.pattern(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}/),
+        Validators.pattern(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}/),
       ]
       ],
       passwordRepeat: [null, [
@@ -90,17 +102,10 @@ export class Registration2Component implements OnInit {
     console.log(JSON.stringify(this.userForm.value));
   }
 
-  get checked() {
-    return false;
-  }
-
   closeModal(id: string) {
     this.modalService.close(id);
   }
 
-  updateChoiceEmployee(id: string) {
-    this.modalService.close(id);
-  }
   ngOnInit() {
     this.initForm();
   }

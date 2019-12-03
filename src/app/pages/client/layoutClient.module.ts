@@ -7,7 +7,7 @@ import {UserModel} from '../../models/user.model';
 import {UserModule} from './users/user.module';
 import {EditUserModule} from './users/editUser/editUser.module';
 import {CreateUserModule} from './users/createUser/createUser.module';
-import {ModalModule} from '../modal/modal.module';
+import {ModalModule} from '../../components/modal/modal.module';
 import {RegistrationModule} from './registration/registration.module';
 import {LoginComponent} from './login/login.component';
 import {LoginModule} from './login/login.module';

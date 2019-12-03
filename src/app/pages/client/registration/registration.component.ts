@@ -9,18 +9,31 @@ import {UserModel} from '../../../models/user.model';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-
-  user = {} as UserModel;
-  readonly passwordPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}/;
+  maxBirthday: string;
+  user: UserModel = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    age: '',
+    password: '',
+    passwordRepeat: '',
+};
+  readonly passwordPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}/;
 
   getIsValidPasswordRepeat(password, passwordRepeat) {
-    console.log(password === passwordRepeat);
     return password === passwordRepeat;
   }
 
-  constructor(private modalService: ModalService) {}
+  constructor(private modalService: ModalService) {
+    const currentDate = new Date();
+    const maxBirthday = new Date(currentDate.getFullYear() - 15, currentDate.getMonth(), currentDate.getDate());
+    const year: string = String(maxBirthday.getFullYear());
+    const month: string = maxBirthday.getMonth() + 1 < 10 ? `0${maxBirthday.getMonth() + 1}` : String(maxBirthday.getMonth() + 1);
+    const day: string = maxBirthday.getDay() < 10 ? `0${maxBirthday.getDay()}` : String(maxBirthday.getDay());
+    this.maxBirthday = `${year}-${month}-${day}`;
+  }
   openModal(id) {
-
     this.modalService.open(id);
   }
 
@@ -28,7 +41,6 @@ export class RegistrationComponent implements OnInit {
     this.modalService.close(id);
   }
   getControlErrors(control: NgModel): string[] {
-
     if (control === undefined || control.errors === null) {
       return [];
     }
@@ -41,10 +53,16 @@ export class RegistrationComponent implements OnInit {
     this.modalService.close(id);
   }
   onSubmit(form: NgForm) {
+    const controls = form.controls;
+
+
     if (form.valid && this.getIsValidPasswordRepeat(this.user.password, this.user.passwordRepeat)) {
       console.log(JSON.stringify(this.user));
     } else {
       console.log("error");
+        Object.keys(controls)
+          .forEach(controlName => controls[controlName].markAsTouched());
+
     }
   }
   ngOnInit() {

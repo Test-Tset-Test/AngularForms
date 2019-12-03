@@ -3,6 +3,7 @@ export class UserModel {
   firstName: string;
   lastName: string;
   email: string;
+  age: string;
   password: string;
   passwordRepeat: string;
 }

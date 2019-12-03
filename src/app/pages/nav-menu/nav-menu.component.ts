@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ModalModule} from '../modal/modal.module';
+import {ModalModule} from '../../components/modal/modal.module';
 import {RegistrationComponent} from '../client/registration/registration.component';
 
 @Component({
