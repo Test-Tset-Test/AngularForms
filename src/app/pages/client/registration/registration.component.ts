@@ -1,9 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ModalModule} from '../../modal/modal.module';
-import {UserService} from '../../../service/user.service';
 import {ModalService} from '../../../service/modal.service';
 import {NgForm, NgModel} from '@angular/forms';
-import {throwError} from 'rxjs';
 import {UserModel} from '../../../models/user.model';
 
 @Component({
