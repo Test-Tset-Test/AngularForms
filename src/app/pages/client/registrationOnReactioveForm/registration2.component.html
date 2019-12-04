@@ -18,7 +18,10 @@
       <hr>
       <div class="form-group">
         <label for="name"><b>FirstName</b></label>
-        <input type="text" id="name" placeholder="Enter FirstName" formControlName="firstName"/>
+        <input type="text"
+               id="name"
+               placeholder="Enter FirstName"
+               formControlName="firstName"/>
       </div>
       <div class="error" *ngIf="isControlInvalid('firstName') && getControlErrors('firstName').length > 0">
         <ng-container [ngTemplateOutlet]="listErrors" [ngTemplateOutletContext]="{errors: getControlErrors('firstName')}">
@@ -26,7 +29,10 @@
       </div>
         <div class="form-group">
           <label for="lastName"><b>LastName</b></label>
-          <input type="text" id="lastName" placeholder="Enter LastName" formControlName="lastName"/>
+          <input type="text"
+                 id="lastName"
+                 placeholder="Enter LastName"
+                 formControlName="lastName"/>
         </div>
       <div class="error" *ngIf="isControlInvalid('lastName') && getControlErrors('lastName').length > 0">
         <ng-container [ngTemplateOutlet]="listErrors" [ngTemplateOutletContext]="{errors: getControlErrors('lastName')}">
@@ -35,7 +41,12 @@
 
       <div class="form-group">
         <label for="email"><b>Email</b></label>
-        <input id="email" type="text" placeholder="Enter Email" name="email" formControlName="email" required email>
+        <input id="email"
+               type="text"
+               placeholder="Enter Email"
+               name="email"
+               formControlName="email"
+               required email>
       </div>
       <div class="error" *ngIf="isControlInvalid('email') && getControlErrors('email').length > 0">
         <ng-container [ngTemplateOutlet]="listErrors" [ngTemplateOutletContext]="{errors: getControlErrors('email')}">
@@ -44,7 +55,12 @@
 
       <div class="form-group">
         <label for="age"><b>Age</b></label>
-        <input type="date" id="age" placeholder="Enter Age" formControlName="age" (keydown) = "$event.preventDefault()" required [max]="maxBirthday"/>
+        <input type="date"
+               id="age"
+               placeholder="Enter Age"
+               formControlName="age"
+               (keydown) = "$event.preventDefault()"
+               required [max]="maxBirthday"/>
       </div>
       <div class="error" *ngIf="isControlInvalid('age') && getControlErrors('age').length > 0">
         <ng-container [ngTemplateOutlet]="listErrors" [ngTemplateOutletContext]="{errors: getControlErrors('age')}">
@@ -53,7 +69,11 @@
 
         <div class="form-group">
           <label for="psw"><b>Password</b></label>
-          <input id="psw" type="password" placeholder="Enter Password" name="psw" formControlName="password">
+          <input id="psw"
+                 type="password"
+                 placeholder="Enter Password"
+                 name="psw"
+                 formControlName="password">
         </div>
       <div class="error" *ngIf="isControlInvalid('password') && getControlErrors('password').length > 0">
         <ng-container [ngTemplateOutlet]="listErrors" [ngTemplateOutletContext]="{errors: getControlErrors('password')}">
@@ -62,7 +82,11 @@
 
         <div class="form-group">
           <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input id="psw-repeat" type="password" placeholder="Repeat Password" name="psw-repeat" formControlName="passwordRepeat">
+          <input id="psw-repeat"
+                 type="password"
+                 placeholder="Repeat Password"
+                 name="psw-repeat"
+                 formControlName="passwordRepeat">
         </div>
         <div class="error">
           <ng-container [ngTemplateOutlet]="listErrors" [ngTemplateOutletContext]="{errors: getControlErrors('passwordRepeat')}">

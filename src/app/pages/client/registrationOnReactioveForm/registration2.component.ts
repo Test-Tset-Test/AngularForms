@@ -16,6 +16,14 @@ export class Registration2Component implements OnInit {
   userForm: FormGroup;
   constructor(private modalService: ModalService,
               private fb: FormBuilder) {
+    this.getMaxBirthday();
+  }
+
+  ngOnInit() {
+    this.initForm();
+  }
+
+  getMaxBirthday() {
     const currentDate = new Date();
     const maxBirthday = new Date(currentDate.getFullYear() - 15, currentDate.getMonth(), currentDate.getDate());
     const year: string = String(maxBirthday.getFullYear());
@@ -106,7 +114,5 @@ export class Registration2Component implements OnInit {
     this.modalService.close(id);
   }
 
-  ngOnInit() {
-    this.initForm();
-  }
+
 }

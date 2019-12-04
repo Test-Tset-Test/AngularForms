@@ -21,11 +21,14 @@ export class RegistrationComponent implements OnInit {
 };
   readonly passwordPattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}/;
 
-  getIsValidPasswordRepeat(password, passwordRepeat) {
-    return password === passwordRepeat;
+  constructor(private modalService: ModalService) {
+    this.getMaxBirthday();
+
+  }
+  ngOnInit() {
   }
 
-  constructor(private modalService: ModalService) {
+  getMaxBirthday() {
     const currentDate = new Date();
     const maxBirthday = new Date(currentDate.getFullYear() - 15, currentDate.getMonth(), currentDate.getDate());
     const year: string = String(maxBirthday.getFullYear());
@@ -33,6 +36,11 @@ export class RegistrationComponent implements OnInit {
     const day: string = maxBirthday.getDay() < 10 ? `0${maxBirthday.getDay()}` : String(maxBirthday.getDay());
     this.maxBirthday = `${year}-${month}-${day}`;
   }
+
+  getIsValidPasswordRepeat(password, passwordRepeat) {
+    return password === passwordRepeat;
+  }
+
   openModal(id) {
     this.modalService.open(id);
   }
@@ -65,7 +73,5 @@ export class RegistrationComponent implements OnInit {
 
     }
   }
-  ngOnInit() {
 
-  }
 }
